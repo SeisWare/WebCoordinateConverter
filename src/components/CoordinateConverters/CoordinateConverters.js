@@ -7,9 +7,6 @@ const CoordinateConverters = (props) => {
     return (
         <div className="CoordinateConverters">
             <div>
-                {/* <h1>{converters}</h1> */}
-                {/* converters.map((converter) => ( */}
-                {/* <Book key={book.id} book={book}) /> */}
                 {converters.map((converter) => (
                     <CoordinateBox key={converter} />
                 ))}
