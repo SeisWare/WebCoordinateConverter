@@ -2,4 +2,16 @@
     margin: 20px;
     background-color: rgba(0, 0, 0, 0.1);
     height: 100px;
+    display: flex;
+}
+
+.removeBtn {
+    margin: 5px;
+    margin-left: auto;
+    height: 40px;
+}
+
+.removeBtn:focus{
+    outline: none;
+    box-shadow: none;
 }
