@@ -1,17 +1,40 @@
-.CoordinateBox {
+.coordinateBox {
     margin: 20px;
+    margin-top: 0;
     background-color: rgba(0, 0, 0, 0.1);
-    height: 100px;
+    height: 200px;
+    width: 1000px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .removeBtn {
     margin: 5px;
     margin-left: auto;
     height: 40px;
+    width: auto;
 }
 
 .removeBtn:focus{
     outline: none;
     box-shadow: none;
+}
+
+.boxBody {
+    height: 150px;
+    display: flex;
+    flex-basis: 90%;
+    margin: 0;
+}
+
+.source > input {
+    border-width: 1px;
+    border-radius: 5px;
+}
+.source > button {
+    margin: 2px;
+    background-color: rgb(144, 209, 255);
+    color: white;
+    border-width: 1px;
+    border-radius: 5px;
 }

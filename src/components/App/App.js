@@ -13,17 +13,24 @@ class App extends React.Component {
 			],
 	}
 
+	addCoordinateBox = () => {
+		this.setState(state => ({
+			converters: this.state.converters.concat({ id: [...this.state.converters].pop().id+1, type: "data" })
+		}))
+	}
+
 	removeCoordinateBox = (id) => {
 		this.setState(state => ({
 			converters: state.converters.filter(box => box.id !== id)
 		}))
 	}
+
 	render() {
 		return (
 			<div className="app" >
-				{console.log(this.state.converters)}
 				<MainPage
 					converters={this.state.converters}
+					addCoordinateBox={this.addCoordinateBox}
 					removeCoordinateBox={this.removeCoordinateBox}
 				/>
 				<Map />

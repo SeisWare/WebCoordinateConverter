@@ -5,7 +5,7 @@ import CoordinateConverters from "../CoordinateConverters/CoordinateConverters";
 import SystemSearch from "../SystemSearch/SystemSearch";
 
 const MainPage = (props) => {
-    const { converters, removeCoordinateBox } = props;
+    const { converters, addCoordinateBox, removeCoordinateBox } = props;
     return (
         <div className="MainPage">
             <Alert variant="primary" className="m-2 text-center" >
@@ -13,6 +13,7 @@ const MainPage = (props) => {
             </Alert>
             <CoordinateConverters
                 converters={converters}
+                addCoordinateBox={addCoordinateBox}
                 removeCoordinateBox={removeCoordinateBox}
             />
             <SystemSearch />
