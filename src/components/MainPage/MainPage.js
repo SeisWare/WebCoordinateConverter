@@ -11,6 +11,7 @@ const MainPage = (props) => {
             <Alert variant="primary" className="m-2 text-center" >
                 web coordinate converter
             </Alert>
+            
             <CoordinateConverters
                 converters={converters}
                 addCoordinateBox={addCoordinateBox}

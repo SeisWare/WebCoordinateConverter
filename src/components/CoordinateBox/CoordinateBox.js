@@ -1,5 +1,6 @@
-import Button from 'react-bootstrap/Button';
 import React from "react";
+import Button from 'react-bootstrap/Button';
+import CoordinateField from '../CoordinatePanel/CoordinatePanel';
 import './CoordinateBox.css';
 
 
@@ -7,21 +8,19 @@ const CoordinateBox = (props) => {
     const { id, type } = props.data;
     return (
         <div className="coordinateBox">
-            <h3>Coordinate Box {id}</h3>
-            <Button className="removeBtn"
-                variant="outline-danger"
-                onClick={() => props.removeCoordinateBox(id)}>
-                remove
-            </Button>
-            <div className="boxBody">
-                <div className="source">
-                    <div>Source:</div>
-                    <input
-                        type="text"
-                        placeholder="Enter New Item"
-                    />
-                    <button class="icon"><i class="fa fa-search"></i></button>
+            <div className='coordinateBox-header'>
+                <h3>Coordinate Box {id}</h3>
+                <div className="coordinate-toolbar">
+                    <Button className="removeBtn round-btn"
+                        variant="outline-danger"
+                        onClick={() => props.removeCoordinateBox(id)}>
+                        x
+                    </Button>
                 </div>
+            </div>
+            <div className='coordinateBox-body'>
+                <CoordinateField title="Source"/>
+                <CoordinateField title="Destination"/>
             </div>
         </div>
     )

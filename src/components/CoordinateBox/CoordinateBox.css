@@ -3,16 +3,27 @@
     margin-top: 0;
     background-color: rgba(0, 0, 0, 0.1);
     height: 200px;
-    width: 1000px;
     display: flex;
     flex-wrap: wrap;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
 }
 
-.removeBtn {
-    margin: 5px;
-    margin-left: auto;
-    height: 40px;
-    width: auto;
+.coordinateBox-header{
+    display: flex;
+    width: 100%;
+}
+
+.coordinateBox-body{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.coordinate-toolbar {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 1;
 }
 
 .removeBtn:focus{

@@ -7,12 +7,14 @@ const CoordinateConverters = (props) => {
     const { converters, addCoordinateBox, removeCoordinateBox } = props;
     return (
         <div className="converterPanel">
-            <Button
-                className="addBtn"
-                variant="outline-success"
-                onClick={() => props.addCoordinateBox()}>
-                Add
-            </Button>
+            <div className="main-toolbar">
+                <Button
+                    className="round-btn"
+                    variant="outline-success"
+                    onClick={() => props.addCoordinateBox()}>
+                    +
+                </Button>
+            </div>
             {converters.map((converter) => (
                 <CoordinateBox
                     key={converter.id}
