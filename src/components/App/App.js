@@ -11,11 +11,12 @@ class App extends React.Component {
 				{ id: 2, type: "data" },
 				{ id: 3, type: "file" },
 			],
+		coordinateSystems: []
 	}
 
 	addCoordinateBox = () => {
 		this.setState(state => ({
-			converters: this.state.converters.concat({ id: [...this.state.converters].pop().id+1, type: "data" })
+			converters: state.converters.concat({ id: [...state.converters].pop().id+1, type: "data" })
 		}))
 	}
 
@@ -25,10 +26,23 @@ class App extends React.Component {
 		}))
 	}
 
+	async loadCoordinateSystems() {
+		const all = require('epsg-index/all.json');
+		var result = Object.keys(all).map((key) => all[key]);
+		this.setState({
+			coordinateSystems: result
+		});
+	}
+
+	componentDidMount() {
+		this.loadCoordinateSystems();
+	}
+
 	render() {
 		return (
 			<div className="app" >
 				<MainPage
+					coordinateSystems={this.state.coordinateSystems}
 					converters={this.state.converters}
 					addCoordinateBox={this.addCoordinateBox}
 					removeCoordinateBox={this.removeCoordinateBox}

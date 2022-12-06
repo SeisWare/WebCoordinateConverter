@@ -1,8 +1,7 @@
 .coordinateBox {
     margin: 20px;
     margin-top: 0;
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 200px;
+    background-color: var(--bs-gray-200);
     display: flex;
     flex-wrap: wrap;
     padding: 0.5rem;
@@ -29,23 +28,4 @@
 .removeBtn:focus{
     outline: none;
     box-shadow: none;
-}
-
-.boxBody {
-    height: 150px;
-    display: flex;
-    flex-basis: 90%;
-    margin: 0;
-}
-
-.source > input {
-    border-width: 1px;
-    border-radius: 5px;
-}
-.source > button {
-    margin: 2px;
-    background-color: rgb(144, 209, 255);
-    color: white;
-    border-width: 1px;
-    border-radius: 5px;
 }

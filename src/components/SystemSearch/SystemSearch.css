@@ -1,0 +1,27 @@
+.systemSearch .systemSeachControl{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.systemSearch {
+    background-color: white;
+    border: solid 1px black;
+    position: absolute;
+    z-index: 9000;
+    border-radius: 0.25rem;
+}
+
+.coordinateSearchResult:hover {
+    background-color: lightgrey;
+}
+
+.coordinateSearchResult mark{
+    padding:0;
+}
+
+.coordinateSearchResult {
+    cursor: pointer;
+    padding: 0 0.5rem;
+}

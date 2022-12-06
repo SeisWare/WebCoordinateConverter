@@ -1,0 +1,19 @@
+.focused .coordinateFieldLabel {
+    transform: translateY(-125%);
+    font-size: .75em;
+    color: black;
+}
+
+.coordinateFieldLabel {
+    position: absolute;
+    top: 0.5rem;
+    z-index: 10;
+    left: 1rem;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+    pointer-events: none;
+    color:gray;
+}
+
+.coordinateFieldInput:focus ,.coordinateFieldButton:focus{
+    box-shadow: none;
+}
