@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SplitButton, Form, InputGroup, Dropdown } from "react-bootstrap";
-import CoordinateInput from 'react-coordinate-input';
+import CoordinateInput, { decimalToDMS } from 'react-coordinate-input';
 
 const LocationLLField = (props) => {
     const [valueDD, setValueDD] = useState([0, 0]);
@@ -16,7 +16,10 @@ const LocationLLField = (props) => {
             <Form.Label>Latitude/Longitude</Form.Label>
             <InputGroup>
                 {selectedIndex == 0?
-                    <CoordinateInput className={'form-control'} value={`${valueDD[0]},${valueDD[1]}`}
+                    <CoordinateInput className={'form-control'}
+                        value={
+                            `${props.value[0]}, ${props.value[1]}`
+                        }
                         onChange={(value, { unmaskedValue, dd, dms }) => {
                             setValueDD(dd);
                         }}
@@ -24,17 +27,17 @@ const LocationLLField = (props) => {
                 :''}
 
                 {selectedIndex == 1?
-                    <Form.Control value={valueDD[0]}
+                    <Form.Control value={props.value[0]}
                         onChange={(e) => {
-                            setValueDD([e.target.value, valueDD[1]]);
+                            setValueDD([parseFloat(e.target.value), props.value[1]]);
                         }}
                     />
                 :''}
                 
                 {selectedIndex == 1?
-                    <Form.Control value={valueDD[1]}
+                    <Form.Control value={props.value[1]}
                         onChange={(e) => {
-                            setValueDD([valueDD[0], e.target.value]);
+                            setValueDD([props.value[0], parseFloat(e.target.value)]);
                         }}
                     />
                 :''}

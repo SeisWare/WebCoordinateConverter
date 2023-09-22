@@ -7,8 +7,12 @@ const LocationXYField = (props) => {
         <Form.Group>
             <Form.Label>X/Y</Form.Label>
             <InputGroup>
-                <Form.Control/>
-                <Form.Control/>
+                <Form.Control value={props.value[0]} onChange={(e) => {
+                            props.onValueChange([parseFloat(e.target.value), props.value[1]]);
+                        }}/>
+                <Form.Control value={props.value[1]} onChange={(e) => {
+                            props.onValueChange([props.value[0], parseFloat(e.target.value)]);
+                        }}/>
             </InputGroup>
         </Form.Group>
     );
