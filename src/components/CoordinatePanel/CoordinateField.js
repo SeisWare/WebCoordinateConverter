@@ -37,6 +37,7 @@ const CoordinateField = (props) => {
         setCoordinateSystem(null);
         setSearchTerm("");
         setTextValue("");
+        props.onCoordinateSystemChange(null);
     }
 
     const handleChange = (e) => {
@@ -50,6 +51,7 @@ const CoordinateField = (props) => {
         setDisplaySystemSearch(false);
         setSearchTerm(system.name);
         setTextValue(system.name);
+        props.onCoordinateSystemChange(system);
     }
 
     const handleLoseFocus = (e) => {

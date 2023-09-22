@@ -11,7 +11,17 @@
     left: 1rem;
     transition: transform 150ms ease-out, font-size 150ms ease-out;
     pointer-events: none;
-    color:gray;
+    color:var(--bs-gray);
+}
+
+.coordinateFieldButton {
+    border-left: none;
+    border-color: var(--bs-gray-500);
+}
+
+.coordinateFieldInput {
+    border-right: none;
+    border-color: var(--bs-gray-500);
 }
 
 .coordinateFieldInput:focus ,.coordinateFieldButton:focus{
