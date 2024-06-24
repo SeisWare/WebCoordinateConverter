@@ -10,6 +10,14 @@ const LocationLLField = (props) => {
     useEffect(() => {
         props.onValueChange(valueDD)
     }, [valueDD]);
+
+    const handleLoseFocusLat = (e) => {
+        props.onValueChange([parseFloat(e.target.value), props.value[1]]);
+    }
+
+    const handleLoseFocusLong = (e) => {
+        props.onValueChange([props.value[0], parseFloat(e.target.value)]);
+    }
     
     return (
         <Form.Group>
@@ -29,16 +37,18 @@ const LocationLLField = (props) => {
                 {selectedIndex == 1?
                     <Form.Control value={props.value[0]}
                         onChange={(e) => {
-                            setValueDD([parseFloat(e.target.value), props.value[1]]);
+                            setValueDD([e.target.value, props.value[1]]);
                         }}
+                        onBlur={handleLoseFocusLat}
                     />
                 :''}
                 
                 {selectedIndex == 1?
                     <Form.Control value={props.value[1]}
                         onChange={(e) => {
-                            setValueDD([props.value[0], parseFloat(e.target.value)]);
+                            setValueDD([props.value[0], e.target.value]);
                         }}
+                        onBlur={handleLoseFocusLong}
                     />
                 :''}
 

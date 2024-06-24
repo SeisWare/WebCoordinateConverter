@@ -9,7 +9,7 @@ import CoordinateField from '../CoordinatePanel/CoordinateField';
 import LocationLLField from '../CoordinatePanel/LocationLLField';
 import LocationXYField from '../CoordinatePanel/LocationXYField';
 import './CoordinateBox.css';
-import { Module } from "module";
+//import { Module } from "module";
 import proj4 from 'proj4';
 import { decimalToDMS } from 'react-coordinate-input';
 
