@@ -75,7 +75,7 @@ const CoordinateField = (props) => {
                     <Form.Control type="search" className="coordinateFieldInput" value={textValue} 
                         onFocus={requestSearch} onChange={handleChange} onBlur={handleLoseFocus} disabled={coordinateSystem}/>
                     <label className="coordinateFieldLabel">{title} Coordinate System</label>
-                    <Button class="icon" variant="outline-secondary" className="coordinateFieldButton"
+                    <Button variant="outline-secondary" className="icon coordinateFieldButton"
                         onClick={coordinateSystem? clearCoordinateSystem : requestSearch}>
                         {coordinateSystem? <i class="fa fa-close"></i> : <i class="fa fa-search"></i>}
                     </Button>
