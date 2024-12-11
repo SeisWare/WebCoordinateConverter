@@ -14,7 +14,7 @@
     "epsg-index": "^2.0.0",
     "font-awesome": "^4.7.0",
     "package.json": "^2.0.1",
-    "proj4": "^2.11.0",
+    "proj4": "^2.15.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.5.0",
     "react-coordinate-input": "^1.0.0",
