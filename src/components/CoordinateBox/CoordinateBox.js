@@ -22,12 +22,6 @@ const CoordinateBox = (props) => {
     const [destinationLL, setDestinationLL] = useState([0.0, 0.0]);
     const [destinationXY, setDestinationXY] = useState([0.0, 0.0]);
 
-    // useEffect(()=>{
-    //     if(sourceCoordinateSystem === null || destinationCoordinateSystem === null) { return;}
-    //     CoordinateOperations.ConvertXYToXY(destinationCoordinateSystem.wkt, sourceCoordinateSystem.wkt, destinationXY)
-    //     .then((result) => { setDestinationXY(result); });
-    // } , [sourceCoordinateSystem, destinationXY, destinationCoordinateSystem]);
-
     useEffect(()=>{
         if(sourceCoordinateSystem === null || destinationCoordinateSystem === null) { return;}
         CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem.proj4, destinationCoordinateSystem.proj4, sourceXY)
