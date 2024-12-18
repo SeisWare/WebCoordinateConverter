@@ -2,6 +2,8 @@ import React from 'react';
 import MainPage from '../MainPage/MainPage';
 import Map from '../Map/Map';
 import './App.css';
+import proj4 from 'proj4';
+import grid from '../../Resources/ntv2_0.gsb';
 
 class App extends React.Component {
 	state = {
@@ -34,8 +36,13 @@ class App extends React.Component {
 		});
 	}
 
+	async setupProj4() {
+		fetch(grid).then(g => g.arrayBuffer()).then(g => { proj4.nadgrid('NTv2_0.gsb', g) });
+	}
+
 	componentDidMount() {
 		this.loadCoordinateSystems();
+		this.setupProj4();
 	}
 
 	render() {

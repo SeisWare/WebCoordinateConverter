@@ -30,7 +30,7 @@ const CoordinateBox = (props) => {
 
     useEffect(()=>{
         if(sourceCoordinateSystem === null || destinationCoordinateSystem === null) { return;}
-        CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem.wkt, destinationCoordinateSystem.wkt, sourceXY)
+        CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem.proj4, destinationCoordinateSystem.proj4, sourceXY)
         .then((result) => { setDestinationXY(result); });
     } , [sourceCoordinateSystem, sourceXY, destinationCoordinateSystem]);
 

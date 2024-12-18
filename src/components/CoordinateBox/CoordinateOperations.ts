@@ -1,19 +1,37 @@
 import proj4 from 'proj4';
 import wktcrs from "wkt-crs";
+
+function isValid(value : number) : boolean
+{
+    return !isNaN(value) && isFinite(value);
+}
+
 export async function ConvertXYToXY(sourceWKT : string, destinationWKT : string, inputXY : number[]) : Promise<number[]>
 {
-    if(sourceWKT === null || destinationWKT === null || isNaN(inputXY[0]) || isNaN(inputXY[1]))
+    let converted = [0.0, 0.0];
+    const inputIsValid = inputXY.every(isValid);
+    if(sourceWKT === null || destinationWKT === null || !inputIsValid)
     {
-        return [0.0, 0.0];
+        return converted;
     }
 
-    const converted = proj4(sourceWKT, destinationWKT, inputXY);
+    try
+    {
+        const converter = proj4(sourceWKT, destinationWKT);
+        converted = converter.forward(inputXY);
+    }
+    catch(err)
+    {
+        console.error(err);
+    }
+
     return converted;
 }
 
 export async function ConvertXYToLL(wkt : string, inputXY : number[]) : Promise<number[]>
 {
-    if(wkt === null || isNaN(inputXY[0]) || isNaN(inputXY[1]))
+    const inputIsValid = inputXY.every(isValid);
+    if(wkt === null || !inputIsValid)
     {
         return [0.0, 0.0];
     }
