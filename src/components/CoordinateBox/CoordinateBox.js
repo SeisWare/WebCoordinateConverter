@@ -24,19 +24,19 @@ const CoordinateBox = (props) => {
 
     useEffect(()=>{
         if(sourceCoordinateSystem === null || destinationCoordinateSystem === null) { return;}
-        CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem.proj4, destinationCoordinateSystem.proj4, sourceXY)
+        CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem, destinationCoordinateSystem, sourceXY)
         .then((result) => { setDestinationXY(result); });
     } , [sourceCoordinateSystem, sourceXY, destinationCoordinateSystem]);
 
     useEffect(()=>{
         if(sourceCoordinateSystem === null) { return;}
-        CoordinateOperations.ConvertXYToLL(sourceCoordinateSystem.wkt, sourceXY)
+        CoordinateOperations.ConvertXYToLL(sourceCoordinateSystem, sourceXY)
         .then((result)=> { setSourceLL(result); });
     } , [sourceCoordinateSystem, sourceXY]);
 
     useEffect(()=>{
         if(destinationCoordinateSystem === null) { return;}
-        CoordinateOperations.ConvertXYToLL(destinationCoordinateSystem.wkt, destinationXY)
+        CoordinateOperations.ConvertXYToLL(destinationCoordinateSystem, destinationXY)
         .then((result)=> { setDestinationLL(result); });
     } , [destinationCoordinateSystem, destinationXY]);
 
@@ -47,7 +47,7 @@ const CoordinateBox = (props) => {
                     <div className='coordinateBox-header'>
                         <h3>Coordinate Box {id}</h3>
                         <div className="coordinate-toolbar">
-                            <CloseButton onClick={() => props.removeCoordinateBox(id)} title="Remove entry "/>
+                            <CloseButton onClick={() => props.removeCoordinateBox(id)} title="Remove entry"/>
                         </div>
                     </div>
                 </Row>
@@ -61,12 +61,15 @@ const CoordinateBox = (props) => {
                             />
                         </Row>
                         <Row>
-                            <Col md={7}>
-                                <LocationLLField onValueChange={setSourceLL} value={sourceLL}/>
-                            </Col>
                             <Col>
                                 <LocationXYField onValueChange={setSourceXY} value={sourceXY}/>
                             </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <LocationLLField onValueChange={setSourceLL} value={sourceLL}/>
+                            </Col>
+
                         </Row>
                     </Col>
                     <Col md={6}>
@@ -78,11 +81,13 @@ const CoordinateBox = (props) => {
                             />
                         </Row>
                         <Row>
-                            <Col md={7}>
-                                <LocationLLField onValueChange={setDestinationLL} value={destinationLL}/>
-                            </Col>
                             <Col>
                                 <LocationXYField onValueChange={setDestinationXY} value={destinationXY} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <LocationLLField onValueChange={setDestinationLL} value={destinationLL}/>
                             </Col>
                         </Row>
                     </Col>

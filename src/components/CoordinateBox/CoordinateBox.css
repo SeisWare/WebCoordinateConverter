@@ -1,5 +1,5 @@
 .coordinateBox {
-    margin: 20px;
+    margin: 1rem;
     margin-top: 0;
     background-color: var(--bs-gray-200);
     display: flex;
@@ -8,12 +8,12 @@
     border-radius: 0.75rem;
 }
 
-.coordinateBox-header{
+.coordinateBox-header {
     display: flex;
     width: 100%;
 }
 
-.coordinateBox-body{
+.coordinateBox-body {
     display: flex;
     flex-direction: row;
     width: 100%;

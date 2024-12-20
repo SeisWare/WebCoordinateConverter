@@ -50,7 +50,7 @@ const CoordinateField = (props) => {
         setCoordinateSystem(system);
         setDisplaySystemSearch(false);
         setSearchTerm(system.name);
-        setTextValue(system.name);
+        setTextValue(`EPSG:${system.code} ${system.name}`);
         props.onCoordinateSystemChange(system);
     }
 

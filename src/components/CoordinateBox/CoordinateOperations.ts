@@ -6,7 +6,12 @@ function isValid(value : number) : boolean
     return !isNaN(value) && isFinite(value);
 }
 
-export async function ConvertXYToXY(sourceWKT : string, destinationWKT : string, inputXY : number[]) : Promise<number[]>
+function formatGrids(input : string) : string
+{
+    return input.replace(/\bnadgrids=\b([^\s]+)\w+/g, (grids) => grids + ",null");
+}
+
+export async function ConvertXYToXY(sourceWKT : ICoordinateSystem, destinationWKT : ICoordinateSystem, inputXY : number[]) : Promise<number[]>
 {
     let converted = [0.0, 0.0];
     const inputIsValid = inputXY.every(isValid);
@@ -17,29 +22,31 @@ export async function ConvertXYToXY(sourceWKT : string, destinationWKT : string,
 
     try
     {
-        const converter = proj4(sourceWKT, destinationWKT);
+        const stuff = formatGrids(destinationWKT.proj4);
+        const converter = proj4(sourceWKT.proj4, formatGrids(destinationWKT.proj4));
         converted = converter.forward(inputXY);
     }
     catch(err)
     {
         console.error(err);
+        converted = [0.0, 0.0];
     }
 
     return converted;
 }
 
-export async function ConvertXYToLL(wkt : string, inputXY : number[]) : Promise<number[]>
+export async function ConvertXYToLL(system : ICoordinateSystem, inputXY : number[]) : Promise<number[]>
 {
     const inputIsValid = inputXY.every(isValid);
-    if(wkt === null || !inputIsValid)
+    if(system === null || system.wkt === null ||!inputIsValid)
     {
         return [0.0, 0.0];
     }
 
-    const { data } = wktcrs.parse(wkt);
+    const { data } = wktcrs.parse(system.wkt);
     if(data.PROJCS && data.PROJCS.GEOGCS)
     {
-        const localConverter = proj4(wkt);
+        const localConverter = proj4(system.wkt);
         const llValue = localConverter.inverse(inputXY);
         return llValue;
     }
