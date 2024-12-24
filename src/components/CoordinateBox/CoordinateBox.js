@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
+    Badge,
     CloseButton,
     Container,
     Row,
@@ -22,10 +23,17 @@ const CoordinateBox = (props) => {
     const [destinationLL, setDestinationLL] = useState([0.0, 0.0]);
     const [destinationXY, setDestinationXY] = useState([0.0, 0.0]);
 
-    useEffect(()=>{
+    const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(()=> {
+        setErrorMessage("");
+        
         if(sourceCoordinateSystem === null || destinationCoordinateSystem === null) { return;}
+        
         CoordinateOperations.ConvertXYToXY(sourceCoordinateSystem, destinationCoordinateSystem, sourceXY)
-        .then((result) => { setDestinationXY(result); });
+        .then((result) => { setDestinationXY(result); })
+        .catch((err) => { setErrorMessage(err.message); });
+
     } , [sourceCoordinateSystem, sourceXY, destinationCoordinateSystem]);
 
     useEffect(()=>{
@@ -45,9 +53,9 @@ const CoordinateBox = (props) => {
             <Container fluid>
                 <Row>
                     <div className='coordinateBox-header'>
-                        <h3>Coordinate Box {id}</h3>
                         <div className="coordinate-toolbar">
                             <CloseButton onClick={() => props.removeCoordinateBox(id)} title="Remove entry"/>
+                            {errorMessage.length === 0 ? '' : <Badge bg="danger" title={errorMessage}>Error</Badge>}
                         </div>
                     </div>
                 </Row>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, button } from "react-bootstrap";
 import CoordinateBox from "../CoordinateBox/CoordinateBox";
 import './CoordinateConverters.css'
 
@@ -9,10 +9,9 @@ const CoordinateConverters = (props) => {
         <div className="converterPanel">
             <div className="main-toolbar">
                 <Button
-                    className="round-btn"
+                    className="round-btn add-btn"
                     variant="outline-success"
                     onClick={() => props.addCoordinateBox()}>
-                    +
                 </Button>
             </div>
             {converters.map((converter) => (

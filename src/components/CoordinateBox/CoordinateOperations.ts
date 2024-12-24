@@ -1,5 +1,6 @@
 import proj4 from 'proj4';
 import wktcrs from "wkt-crs";
+import './ICoordinateSystem.ts';
 
 function isValid(value : number) : boolean
 {
@@ -11,26 +12,19 @@ function formatGrids(input : string) : string
     return input.replace(/\bnadgrids=\b([^\s]+)\w+/g, (grids) => grids + ",null");
 }
 
-export async function ConvertXYToXY(sourceWKT : ICoordinateSystem, destinationWKT : ICoordinateSystem, inputXY : number[]) : Promise<number[]>
+export async function ConvertXYToXY(source : ICoordinateSystem, destination : ICoordinateSystem, inputXY : number[]) : Promise<number[]>
 {
     let converted = [0.0, 0.0];
     const inputIsValid = inputXY.every(isValid);
-    if(sourceWKT === null || destinationWKT === null || !inputIsValid)
+    if(source === null || destination === null || !inputIsValid)
     {
         return converted;
     }
 
-    try
-    {
-        const stuff = formatGrids(destinationWKT.proj4);
-        const converter = proj4(sourceWKT.proj4, formatGrids(destinationWKT.proj4));
-        converted = converter.forward(inputXY);
-    }
-    catch(err)
-    {
-        console.error(err);
-        converted = [0.0, 0.0];
-    }
+    const formattedSource = formatGrids(source.proj4);
+    const formattedDestination = formatGrids(destination.proj4);
+    const converter = proj4(formattedSource, formattedDestination);
+    converted = converter.forward(inputXY);
 
     return converted;
 }

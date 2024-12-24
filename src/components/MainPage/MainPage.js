@@ -7,11 +7,7 @@ const MainPage = (props) => {
     const { coordinateSystems, converters, addCoordinateBox, removeCoordinateBox } = props;
 
     return (
-        <div className="MainPage">
-            <Alert variant="primary" className="m-2 text-center" >
-                web coordinate converter
-            </Alert>
-            
+        <div className="MainPage">           
             <CoordinateConverters
                 converters={converters}
                 addCoordinateBox={addCoordinateBox}
